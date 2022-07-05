@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import BlogList from "./BlogList";
 
 const Home = () => {
     const [blogs, setBlog] = useState([
@@ -16,25 +17,32 @@ const Home = () => {
             author: "Tony",
             date: "02/05/2015",
         },
+        {
+            id: 3,
+            title: "L'histoire du codeur mystérieux",
+            body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae earum a quos, quod ipsam nostrum nobis explicab",
+            author: "Tony",
+            date: "09/06/2016",
+        },
     ]);
 
+    const [name, setName] = useState("Duplex");
+
+    const HandleDelete = (id) => {
+        const newBlogs = blogs.filter((blog) => blog.id !== id);
+        setBlog(newBlogs);
+    };
+
+    useEffect(() => {
+        console.log('use effect a etait appele...');
+    });
     return (
         <div className="home">
-            <div className="bloglist">
-                {blogs.map((blog) => (
-                    <div className="blog" key={blog.id}>
-                        <a href="" className="blog-titre">
-                            {blog.title}
-                        </a>
-                        <small className="blog-publication-date">
-                            Publier le : {blog.date}
-                        </small>
-                        <p className="blog-author">
-                            Publier par :{blog.author}
-                        </p>
-                    </div>
-                ))}
-            </div>
+            <BlogList
+                blogs={blogs}
+                title={"La liste de tous les articles"}
+                HandleDelete={HandleDelete}
+            />
         </div>
     );
 };
