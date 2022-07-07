@@ -4,9 +4,11 @@ import "./index.css";
 import useRecuperation from "./useRecuperation";
 
 const Home = () => {
-    const { data: blogs, isLoading, error } = useRecuperation(
-        "http://localhost:8000/blogs"
-    );
+    const {
+        data: blogs,
+        isLoading,
+        error,
+    } = useRecuperation("http://localhost:8000/blogs");
     return (
         <div className="home">
             {error && <div className="errMesssage">{error}</div>}
