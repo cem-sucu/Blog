@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router-dom";
 import useRecuperation from "./useRecuperation";
 import "./index.css";
 
@@ -10,6 +10,14 @@ const BlogDetail = () => {
         isLoading,
         error,
     } = useRecuperation("http://localhost:8000/blogs/" + id);
+    const history = useHistory;
+
+    const HandleDelete = () => {
+        fetch("http://localhost:8000/blogs/" + id, {
+            methode: "DELETE",
+        }).then(() => {});
+        history.push("/");
+    };
 
     return (
         <div className="detail-blog">
@@ -23,6 +31,9 @@ const BlogDetail = () => {
                     <small className="blog-publication-date">{`Publier le : ${blog.date}`}</small>
                     <p className="blog-body">{blog.body}</p>
                     <p className="blog-author">{`Publier par : ${blog.author}`}</p>
+                    <button className="delete" onClick={HandleDelete}>
+                        supprimer
+                    </button>
                 </div>
             )}
         </div>

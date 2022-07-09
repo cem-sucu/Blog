@@ -42,8 +42,9 @@
 
 .liens li a:hover {
   color: #028bfc;
-  color: #128acf;
-  color: black;
+  font-weight: bold;
+  /* color: #128acf;
+  color: black; */
 
 }
 
@@ -133,6 +134,19 @@
 
 }
 
+.delete {
+  cursor: pointer;
+  float: right;
+  cursor: pointer;
+  float: right;
+  background: #028bfc;
+  color: #fff;
+  /* padding: 0.1rem; */
+  border-radius: 0.5rem;
+  border: none;
+  width: 100px;
+  font-size: 1rem;
+}
 
 /* form style */
 
