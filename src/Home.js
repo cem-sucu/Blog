@@ -8,7 +8,7 @@ const Home = () => {
         data: blogs,
         isLoading,
         error,
-    } = useRecuperation("http://localhost:8000/blogs");
+    } = useRecuperation("http://localhost:8000/blogs?_sort=id&_order=desc");
     return (
         <div className="home">
             {error && <div className="errMesssage">{error}</div>}

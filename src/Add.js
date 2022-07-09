@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Add = () => {
     const [title, setTitle] = useState("");
     const [author, setAuthor] = useState("");
     const [body, setBody] = useState("");
-    let [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const history = useHistory();
 
     const HandleBlogAdding = (e) => {
         e.preventDefault();
@@ -12,12 +14,15 @@ const Add = () => {
         const date = `${tmp_date[0]}${tmp_date[1]}`;
         const blog = { title, author, body, date };
         setIsLoading(true);
+
         fetch("http://localhost:8000/blogs", {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(blog),
         }).then(() => {
             setIsLoading(false);
+
+            history.push("/");
         });
     };
 
